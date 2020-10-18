@@ -25,6 +25,7 @@ public class LinkedList<K> {
 
 	public void setTail(MyNode<K> tail) {
 		this.tail = tail;
+		tail.setNext(null);
 	}
 	
 	public void addNode(MyNode<K> newNode) {
@@ -66,4 +67,24 @@ public class LinkedList<K> {
 		}
 		System.out.print(temp.getKey()+"\n");
 	}
+	
+	public MyNode<K> deleteFirstElement(MyNode<K> head)
+	{
+		MyNode<K> temp=head;
+		setHead(head.getNext());
+		return temp;
+	}
+
+	public MyNode<K> deleteLastElement(MyNode<K> head) {
+		if(head==null)
+			return null;
+		MyNode<K> temp=head;
+		while(temp.getNext().getNext()!=null)
+		{
+			temp=temp.getNext();
+		}
+		MyNode<K> lastElement=temp.getNext();
+		setTail(temp);
+		return lastElement;
+	}	
 }	

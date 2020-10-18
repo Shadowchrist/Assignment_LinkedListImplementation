@@ -70,5 +70,38 @@ public class LinkedListTest {
 				&& list.getTail().equals(thirdNode);
 		assertTrue(result);
 	}
+	
+	@Test
+	public void deletingFirstElementFromLinkedList() {
+		MyNode firstNode = new MyNode(70);
+		MyNode secondNode = new MyNode(30);
+		MyNode thirdNode = new MyNode(56);
 
+		LinkedList<Object> list=new LinkedList<Object>(null,null);
+		
+		list.addNode(firstNode);
+		list.addNode(secondNode);
+		list.addNode(thirdNode);
+		MyNode deleted =list.deleteFirstElement(list.getHead());
+		list.printLinkedList(list.getHead());
+		boolean result=deleted.getKey().equals(thirdNode.getKey());
+		assertTrue(result);
+	}
+	
+	@Test
+	public void deletingLastElementFromLinkedList() {
+		MyNode firstNode = new MyNode(70);
+		MyNode secondNode = new MyNode(30);
+		MyNode thirdNode = new MyNode(56);
+
+		LinkedList<Object> list=new LinkedList<Object>(null,null);
+		
+		list.addNode(firstNode);
+		list.addNode(secondNode);
+		list.addNode(thirdNode);
+		MyNode deleted =list.deleteLastElement(list.getHead());
+		list.printLinkedList(list.getHead());
+		boolean result=deleted.getKey().equals(firstNode.getKey());
+		assertTrue(result);
+	}
 }
