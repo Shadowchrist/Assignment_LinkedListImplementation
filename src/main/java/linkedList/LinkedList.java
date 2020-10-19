@@ -86,5 +86,69 @@ public class LinkedList<K> {
 		MyNode<K> lastElement=temp.getNext();
 		setTail(temp);
 		return lastElement;
-	}	
+	}
+	
+	public MyNode<K> searchElement(K target) {
+		MyNode<K> temp=head;
+		int check=0;
+		while(temp.getNext()!=null)
+		{
+			if(temp.getKey().equals(target))
+			{
+				check=1;
+				break;
+			}
+			temp=temp.getNext();
+		}
+		if(check==1)
+			return temp;
+		else
+		{
+			System.out.println("No such element found!");
+			return null;
+		}	
+	}
+	
+	public void insertAfterSearchedElement(K target,K newNode) {
+		MyNode<K> targetNode=searchElement(target);
+		if(targetNode!=null)
+		{
+			insertNode(targetNode,new MyNode<K>(newNode));
+		}
+		else
+		{
+			System.out.println("Element could not be inserted!");
+		}
+	}
+	
+	public void deleteGivenElement(K target)
+	{
+		MyNode<K> toBeDeleted=searchElement(target);
+		MyNode<K> tempNode=head;
+		if(toBeDeleted!=null)
+		{
+			while (!tempNode.getNext().equals(toBeDeleted)) {
+				tempNode = tempNode.getNext();
+			}
+			tempNode.setNext(toBeDeleted.getNext());
+			System.out.println("Element deleted");
+		} else
+			System.out.println("Element not deleted");
+	}
+
+	public int size(MyNode<K> head) {
+		if(head==null)
+			return 0;
+		else
+		{
+			int count=1;
+			MyNode<K> temp=head;
+			while(temp.getNext()!=null)
+			{
+				count++;
+				temp=temp.getNext();
+			}
+			return count;
+		}
+	}
 }	
