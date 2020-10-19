@@ -104,7 +104,6 @@ public class LinkedList<K> {
 			return temp;
 		else
 		{
-			System.out.println("No such element found!");
 			return null;
 		}	
 	}
@@ -149,6 +148,29 @@ public class LinkedList<K> {
 				temp=temp.getNext();
 			}
 			return count;
+		}
+	}
+	
+	@SuppressWarnings("unchecked")
+	public void addOrdered(MyNode<K> newNode) {
+		if (head == null || (((Comparable<K>) head.getKey()).compareTo((K) newNode.getKey()) >= 0)) {
+			newNode.setNext((MyNode<K>) head);
+			setHead((MyNode<K>) newNode);
+		} else {
+			MyNode<K> tempNode = head;
+			while (tempNode.getNext() != null && (((Comparable<K>) tempNode.getNext().getKey()).compareTo((K) newNode.getKey())) < 0) {
+				tempNode = tempNode.getNext();
+			}
+			if(tempNode.getNext() == null) {
+				MyNode<K> myNode=searchElement(tempNode.getKey());
+				myNode.setNext(newNode);
+				setTail(newNode);
+			}
+			else {
+				newNode.setNext(tempNode.getNext());
+				MyNode<K> myNode=searchElement(tempNode.getKey());
+				myNode.setNext(newNode);
+			}				
 		}
 	}
 }	

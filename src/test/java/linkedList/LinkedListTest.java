@@ -85,12 +85,11 @@ public class LinkedListTest {
 		list.addNode(firstNode);
 		list.addNode(secondNode);
 		list.addNode(thirdNode);
-		list.printLinkedList(list.getHead());
-		System.out.println("Size : " + list.size(list.getHead()));
-		
 		MyNode deleted =list.deleteFirstElement(list.getHead());
 		boolean result=deleted.getKey().equals(thirdNode.getKey());
 		assertTrue(result);
+		list.printLinkedList(list.getHead());
+		System.out.println("Size : " + list.size(list.getHead()));
 	}
 	
 	@Test
@@ -173,5 +172,25 @@ public class LinkedListTest {
 				&& list.getTail().equals(fourthNode);
 		assertTrue(result);
 	}
+	
+	@Test
+	public void given3NumberWhenAddingElementInOrderShouldPassLinkedListTest() {
+		MyNode firstNode = new MyNode(56);
+		MyNode secondNode = new MyNode(30);
+		MyNode thirdNode = new MyNode(40);
+		MyNode fourthNode = new MyNode(70);
 
+		LinkedList<Object> list=new LinkedList<Object>(null,null);
+		list.addOrdered(firstNode);
+		list.addOrdered(secondNode);
+		list.addOrdered(thirdNode);
+		list.addOrdered(fourthNode);
+		list.printLinkedList(list.getHead());
+		System.out.println("Size : " + list.size(list.getHead()));
+		
+		boolean result = list.getHead().equals(secondNode) && list.getHead().getNext().equals(thirdNode)
+				&& list.getHead().getNext().getNext().equals(firstNode)
+				&& list.getTail().equals(fourthNode);
+		assertTrue(result);
+	}
 }
